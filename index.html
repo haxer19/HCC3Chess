@@ -1,0 +1,238 @@
+<!-- Tien Thanh: 9/11/25 -->
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>HCC — Cộng đồng cờ vua Hoằng Hóa 3</title>
+<style>
+:root{--bg:#0f1724;--card:#0b1220;--accent:#ffd166;--muted:#9aa4b2;--glass:rgba(255,255,255,.04)}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,'Helvetica Neue',Arial;background:linear-gradient(180deg,#071022 0%,#071428 40%,#071022 100%);color:#e6eef8;-webkit-font-smoothing:antialiased}
+.container{max-width:1100px;margin:32px auto;padding:24px}
+.header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:56px;height:56px;background:linear-gradient(135deg,#0ea5a7,#7c3aed);border-radius:10px;display:grid;place-items:center;font-weight:700;color:#071022;font-size:18px}
+.h-title{font-size:20px;letter-spacing:0.6px}
+.actions{display:flex;gap:12px}
+.btn{background:linear-gradient(90deg,var(--accent),#ff8a65);color:#071022;padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,.45);transition:transform .18s ease}
+.btn:active{transform:translateY(2px)}
+.sec-hero{display:grid;grid-template-columns:1fr 420px;gap:28px;margin-top:22px}
+@media (max-width:900px){.sec-hero{grid-template-columns:1fr} .header{flex-direction:column;align-items:flex-start} .actions{width:100%;justify-content:space-between}}
+.card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border-radius:14px;padding:20px;box-shadow:0 12px 40px rgba(2,6,23,.6);border:1px solid rgba(255,255,255,0.03)}
+.club-desc h1{margin:0;font-size:28px}
+.club-desc p{color:var(--muted);line-height:1.5;margin-top:10px}
+.cta-row{display:flex;gap:10px;margin-top:16px}
+.small{padding:8px 12px;border-radius:10px;background:var(--glass);border:1px solid rgba(255,255,255,0.03);color:var(--accent);font-weight:700}
+.fb-card{display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:center;text-align:center;padding:28px}
+.fb-card h3{margin:0}
+.fb-card p{margin:0;color:var(--muted)}
+.fb-row{display:flex;gap:12px}
+.follow{background:linear-gradient(90deg,#3b5998,#8b9dc3);color:white;padding:10px 14px;border-radius:10px;border:0;font-weight:700}
+.join{background:linear-gradient(90deg,#1877f2,#4facfe);color:white;padding:10px 14px;border-radius:10px;border:0;font-weight:700}
+.members{margin-top:28px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media (max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.grid{grid-template-columns:1fr}}
+.member-card{position:relative;padding:18px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.01),rgba(255,255,255,0.02));overflow:hidden;border:1px solid rgba(255,255,255,0.03);cursor:pointer;transition:transform .35s cubic-bezier(.2,.9,.2,1),box-shadow .35s}
+.member-card:hover{transform:translateY(-8px);box-shadow:0 30px 50px rgba(2,6,23,.6)}
+.avatar{width:72px;height:72px;border-radius:12px;display:grid;place-items:center;font-weight:800;font-size:20px}
+.m-top{display:flex;gap:14px;align-items:center}
+.m-name{font-weight:800}
+.m-role{color:var(--muted);font-size:13px}
+.badge{position:absolute;top:12px;right:12px;padding:6px 8px;border-radius:8px;font-weight:700;background:rgba(0,0,0,0.28);border:1px solid rgba(255,255,255,0.03)}
+.stats{display:flex;gap:10px;margin-top:12px}
+.stat{background:rgba(255,255,255,0.02);padding:8px 10px;border-radius:10px;font-size:13px;color:var(--muted)}
+.spc-card{display:grid;grid-template-columns:1fr;align-items:center;gap:12px;padding:28px;border-radius:18px;background:linear-gradient(135deg,#0b1220,rgba(124,58,237,0.06));border:1px solid rgba(255,255,255,0.04)}
+.spc-card h3{margin:0}
+.footer{margin-top:28px;display:flex;justify-content:center}
+.fade-in{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.9,.2,1)}
+.fade-in.show{opacity:1;transform:none}
+.hero-board{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border-radius:14px;padding:18px;color:var(--muted)}
+.chessboard{width:100%;height:180px;background:linear-gradient(135deg,#131a2a,#09121a);border-radius:10px;display:grid;grid-template-columns:repeat(8,1fr);gap:2px;padding:8px}
+.chessboard div{background:rgba(255,255,255,0.03);border-radius:3px}
+.chessboard div:nth-child(odd){background:rgba(255,255,255,0.01)}
+.small-txt{font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="brand">
+      <div class="logo">HCC</div>
+      <div>
+        <div class="h-title">HCC: Cộng đồng cờ vua Hoằng Hóa 3</div>
+        <div class="small-txt">Nơi giao lưu, tập luyện và thi đấu cho người yêu cờ</div>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn" id="b1">Tham gia nhóm</button>
+      <button class="btn" id="b2">Theo dõi trang</button>
+    </div>
+  </div>
+
+  <div class="sec-hero">
+    <div class="card club-desc fade-in" id="c1">
+      <h1>Giới thiệu ngắn</h1>
+      <p>HCC là cộng đồng cờ vua Hoằng Hóa 3. Mục tiêu: kết nối người chơi, tổ chức buổi offline, chia sẻ kỹ thuật và đấu cặp. Mọi trình độ đều chào đón.</p>
+      <div class="cta-row">
+        <button class="join" id="j1">Gia nhập Facebook</button>
+        <button class="follow" id="f1">Theo dõi</button>
+        <div class="small">Tình nguyện miễn phí</div>
+      </div>
+      <div style="margin-top:14px" class="small-txt">Gặp mặt hàng tuần. Sinh hoạt chính: trao đổi chiến thuật, giải Mini-tournament, học kèm.</div>
+    </div>
+
+    <div class="card hero-board fade-in" id="c2">
+      <div class="fb-card">
+        <h3>Nhanh</h3>
+        <p>Nhấn để mở Facebook</p>
+        <div class="fb-row">
+          <a id="aJoin" class="join" href="https://www.facebook.com/groups/hccconfession" target="_blank">Mở nhóm</a>
+          <a id="aPage" class="follow" href="https://www.facebook.com/HCC3Chess" target="_blank">Trang CLB</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="members">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
+      <h2 style="margin:0">Ban nhân sự</h2>
+      <div class="small-txt">Những gương mặt cốt lõi</div>
+    </div>
+
+    <div class="grid" id="grid">
+      <div class="member-card fade-in">
+        <div class="badge">Leader</div>
+        <div class="m-top">
+          <div class="avatar" style="background:linear-gradient(135deg,#ffb86b,#ff6b6b)">TTQ</div>
+          <div>
+            <div class="m-name">Trương Trọng Quốc</div>
+            <div class="m-role">Trưởng CLB · Phế Vật</div>
+          </div>
+        </div>
+        <div class="stats">
+          <div class="stat">Elo: 0</div>
+          <div class="stat">Kinh nghiệm: 0</div>
+        </div>
+      </div>
+
+      <div class="member-card fade-in">
+        <div class="badge">Admin</div>
+        <div class="m-top">
+          <div class="avatar" style="background:linear-gradient(135deg,#6dd3ff,#7b61ff)">LHH</div>
+          <div>
+            <div class="m-name">Lê Hữu Huy</div>
+            <div class="m-role">QTV · Tổ chức sự kiện</div>
+          </div>
+        </div>
+        <div class="stats">
+          <div class="stat">Elo: 0</div>
+          <div class="stat">Số event: 0</div>
+        </div>
+      </div>
+
+      <div class="member-card fade-in">
+        <div class="badge">Coach</div>
+        <div class="m-top">
+          <div class="avatar" style="background:linear-gradient(135deg,#ffd166,#9b59ff)">PVC</div>
+          <div>
+            <div class="m-name">Phan Việt Cường</div>
+            <div class="m-role">HLV · Cường Gay</div>
+          </div>
+        </div>
+        <div class="stats">
+          <div class="stat">Elo: 0</div>
+          <div class="stat">Học viên: 0</div>
+        </div>
+      </div>
+
+      <div class="member-card fade-in">
+        <div class="badge">Organ</div>
+        <div class="m-top">
+          <div class="avatar" style="background:linear-gradient(135deg,#6ee7b7,#34d399)">LDQ</div>
+          <div>
+            <div class="m-name">Lê Đỗ Quyên</div>
+            <div class="m-role">Ghi biên bản · Lịch thi đấu</div>
+          </div>
+        </div>
+        <div class="stats">
+          <div class="stat">Elo: 0</div>
+          <div class="stat">Sự kiện: 0</div>
+        </div>
+      </div>
+
+      <div class="member-card fade-in">
+        <div class="badge">Media</div>
+        <div class="m-top">
+          <div class="avatar" style="background:linear-gradient(135deg,#f87171,#fb7185)">LVA</div>
+          <div>
+            <div class="m-name">Lê Văn A</div>
+            <div class="m-role">Truyền thông · abcxyz</div>
+          </div>
+        </div>
+        <div class="stats">
+          <div class="stat">Video: 0</div>
+          <div class="stat">Followers: 0</div>
+        </div>
+      </div>
+
+      <div class="member-card fade-in">
+        <div class="badge">Ref</div>
+        <div class="m-top">
+          <div class="avatar" style="background:linear-gradient(135deg,#60a5fa,#7c3aed)">LVA</div>
+          <div>
+            <div class="m-name">Lê Văn A</div>
+            <div class="m-role">Trọng tài · Điều phối trận</div>
+          </div>
+        </div>
+        <div class="stats">
+          <div class="stat">Trận: 0</div>
+          <div class="stat">Độ chính xác: cao</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top:18px" class="spc-card fade-in">
+      <h3>Người tạo giao diện</h3>
+      <div style="display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+        <div style="display:flex;gap:12px;align-items:center">
+          <div style="width:96px;height:96px;border-radius:16px;display:grid;place-items:center;font-weight:900;background:linear-gradient(135deg,#ff6b6b,#ffd166);font-size:20px">TT</div>
+          <div>
+            <div style="font-weight:900">Cao Tiến Thành</div>
+            <div class="small-txt">Developer · Sigma Boy</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px">
+          <a class="btn" href="https://github.com/haxer19" id="repo">Xem mã</a>
+          <a class="small" href="https://www.facebook.com/TienThanh.Void">Liên hệ</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="small-txt">© HCC Hoằng Hóa 3</div>
+  </div>
+</div>
+<script>
+var a=document.getElementById.bind(document);
+var b=a('b1');
+var c=a('b2');
+var j=a('j1');
+var f=a('f1');
+var aj=a('aJoin');
+var ap=a('aPage');
+var repo=a('repo');
+b.addEventListener('click',function(){aj.click()});
+c.addEventListener('click',function(){ap.click()});
+j.addEventListener('click',function(){aj.click()});
+f.addEventListener('click',function(){ap.click()});
+repo.addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})});
+var obs=new IntersectionObserver(function(e){e.forEach(function(o){if(o.isIntersecting){o.target.classList.add('show')}})},{threshold:.12});
+document.querySelectorAll('.fade-in').forEach(function(n){obs.observe(n)});
+(function r(){var s=window.matchMedia('(prefers-reduced-motion:reduce)');if(s.matches){document.querySelectorAll('.fade-in').forEach(function(n){n.style.transition='none';n.classList.add('show')});return}requestAnimationFrame(function(){})})();
+</script>
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!-- Tien Thanh -->
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>HCC — Cộng đồng cờ vua Hoằng Hóa 3</title>
+<link rel="icon" type="image/png" href="https://i.postimg.cc/rp3XLqX8/ssss.png">
+<style>
+:root{
+  --bg:#0f1724;--card:#0b1220;--muted:#9aa4b2;--accent:#4f46e5;--glass:rgba(255,255,255,0.03);
+  --glass2:rgba(255,255,255,0.02);
+}
+*{box-sizing:border-box;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial}
+html,body{height:100%;margin:0;background:
+ radial-gradient(600px 400px at 10% 10%, rgba(79,70,229,0.12), transparent 10%),
+ linear-gradient(180deg, rgba(8,10,20,1), rgba(6,8,14,1));color:#e6eef8}
+.app{max-width:1200px;margin:32px auto;padding:28px;border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);box-shadow:0 6px 30px rgba(2,6,23,0.7)}
+.hdr{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}
+.logo{display:flex;align-items:center;gap:12px}
+/* .logo .dot{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#06b6d4);display:flex;align-items:center;justify-content:center;color:white;font-weight:700} */
+.logo .logo-image {width: 44px;height: 44px;border-radius:10px;object-fit: cover;}
+.title{font-weight:700;font-size:18px}
+.topbar{display:flex;gap:8px;align-items:center}
+.btn{background:var(--glass);border:1px solid rgba(255,255,255,0.04);padding:10px 14px;border-radius:10px;color:var(--muted);cursor:pointer;font-weight:600}
+.btn.primary{background:linear-gradient(90deg,var(--accent),#06b6d4);border:none;color:white;box-shadow:0 8px 30px rgba(79,70,229,0.12)}
+.viewToggle{display:flex;gap:8px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:linear-gradient(180deg,var(--card),var(--glass2));padding:18px;border-radius:14px;border:1px solid rgba(255,255,255,0.03);display:flex;flex-direction:column;gap:12px;transition:transform .18s,box-shadow .18s}
+.card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(2,6,23,0.6)}
+.head{display:flex;align-items:center;gap:12px}
+.avatar{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,#fff2 10%,transparent);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:22px}
+.info{flex:1}
+.name{font-weight:700;font-size:16px;color:#fff;}
+.meta{color:var(--muted);font-size:13px;margin-top:4px}
+.actions{display:flex;gap:8px;align-items:center}
+.iconBtn{padding:8px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02);cursor:pointer;color:var(--muted);font-weight:700}
+.row{display:flex;gap:8px;align-items:center;justify-content:space-between}
+.barWrap{background:rgba(255,255,255,0.03);height:12px;border-radius:999px;overflow:hidden;display:flex;align-items:center}
+.bar{height:100%;background:linear-gradient(90deg,var(--accent),#06b6d4);width:0%;transition:width .4s}
+.small{font-size:13px;color:var(--muted)}
+.amounts{display:flex;gap:12px;align-items:center}
+.pill{background:rgba(255,255,255,0.02);padding:8px 10px;border-radius:999px;color:var(--muted);font-weight:700;border:1px solid rgba(255,255,255,0.02);font-size:13px}
+.tp{display:flex;gap:8px;align-items:center}
+.dialogBg{position:fixed;inset:0;background:rgba(2,6,23,0.6);display:none;align-items:center;justify-content:center;z-index:60}
+.dialog{width:420px;background:linear-gradient(180deg,#071022, #08131e);padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);box-shadow:0 30px 80px rgba(2,6,23,0.7)}
+.dialog h3{margin:0 0 12px;font-size:16px}
+.field{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+.input{padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#e6eef8}
+.rowBetween{display:flex;justify-content:space-between;align-items:center}
+.listCard{display:flex;flex-direction:column;gap:12px}
+.voterRow{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02)}
+.empty{color:var(--muted);text-align:center;padding:36px}
+@media (max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.grid{grid-template-columns:1fr}.app{padding:18px}}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <div class="hdr">
+    <div class="logo">
+      <!-- <div class="dot">HCC</div> -->
+      <img src="https://i.postimg.cc/rp3XLqX8/ssss.png" alt="Logo HCC" class="logo-image">
+      <div>
+        <div class="title">Warrior Chess Tournament Hoang Hoa 3</div>
+        <div class="small">Top người chơi có xác suất thắng cao nhất</div>
+      </div>
+    </div>
+    <div class="topbar">
+      <div class="tp small" id="sumInfo"></div>
+      <div class="viewToggle">
+        <button class="btn" id="btList">Danh Sách</button>
+        <button class="btn primary" id="btVoters">Thông Tin</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="mainView">
+    <div class="grid" id="g"></div>
+  </div>
+
+  <div id="vView" style="display:none">
+    <div class="grid" id="gv"></div>
+  </div>
+</div>
+
+<div class="dialogBg" id="dlg">
+  <div class="dialog" id="dlgC">
+    <h3 id="dlgT">Xác nhận</h3>
+    <div class="field">
+      <div class="small" id="dlgNote">Vui lòng chụp kết quả xác nhận vote người chơi này vào nhóm chat</div>
+    </div>
+    <div class="field">
+      <label class="small">Họ và tên người được chọn</label>
+      <div id="dlgP" style="font-weight:700"></div>
+    </div>
+    <div class="field">
+      <label class="small">Họ và tên của bạn</label>
+      <input class="input" id="inpName" placeholder="Tên hiển thị">
+    </div>
+    <div class="field">
+      <label class="small">Số tiền đặt cược</label>
+      <input class="input" id="inpAmt" type="number" min="1000" value="10000">
+    </div>
+    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:6px">
+      <button class="btn" id="dlgCancel">Hủy</button>
+      <button class="btn primary" id="dlgOk">Xác nhận</button>
+    </div>
+  </div>
+</div>
+
+<div class="dialogBg" id="vDlg">
+  <div class="dialog" id="vDlgC">
+    <h3 id="vDlgT">Người đã vote</h3>
+    <div class="listCard" id="vList"></div>
+    <div style="display:flex;justify-content:flex-end;margin-top:10px">
+      <button class="btn" id="vClose">Đóng</button>
+    </div>
+  </div>
+</div>
+
+<div id="infoDlg" class="dialogBg" style="display:none">
+  <div class="dialog">
+    <div style="display:flex;justify-content:center;margin-top:15px">
+    <div class="msg"></div>
+    </div>
+    <div style="display:flex;justify-content:center;margin-top:15px">
+      <button class="btn" onclick="document.getElementById('infoDlg').style.display='none'">Đóng</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const pArr=[
+  {id:'p1',n:'Trương Trọng Gia',cls:'10B2',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#ff7a7a,#ffb86b)',fb:'https://www.facebook.com/profile.php?id=61577650113124'},
+  {id:'p2',n:'Nguyễn Thái An',cls:'10B2',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#7afcff,#6b8bff)',fb:'https://www.facebook.com/gassny123'},
+  {id:'p3',n:'Lê Anh Kiên',cls:'10B2',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#b28cff,#ff7ad1)',fb:'https://www.facebook.com/profile.php?id=61580019172792'},
+  {id:'p4',n:'Nguyễn Tiến Gia Huy',cls:'10B2',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#a8c0ff,#3f2b96)',fb:''}, 
+  {id:'p5',n:'Nguyễn Hữu Minh Huy',cls:'10B2',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#a1ffce,#faffd1)',fb:''},
+  {id:'p6',n:'Phạm Minh Sơn',cls:'10B2',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#ff9a9e,#fecfef)',fb:''}, 
+  {id:'p7',n:'Lâm Việt Dương',cls:'10B2',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#fad0c4,#ffd1ff)',fb:''}, 
+  {id:'p8',n:'Trương Việt Hoàng',cls:'10B2',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#84fab0,#8fd3f4)',fb:''}, 
+  {id:'p9',n:'Phạm Kiều Diễm',cls:'10B1',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#ffc3a0,#ff9c9c)',fb:''}, 
+  {id:'p10',n:'Nguyễn Thị Phương Hoa',cls:'12C1',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#9796f0,#fbc7d4)',fb:''}, 
+  {id:'p11',n:'Trần Quang Việt',cls:'12C1',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#fccb90,#d57eeb)',fb:''}, 
+  {id:'p12',n:'Trần Tấn Sang',cls:'10B2',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#4facfe,#00f2fe)',fb:''}, 
+  {id:'p13',n:'Trương Thế Hoàn',cls:'10B4',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#c471f5,#fa71cd)',fb:''},
+  {id:'p14',n:'Lê Phạm Anh Tú',cls:'10B4',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#fff1eb,#ace0f9)',fb:''}, 
+  {id:'p15',n:'Lê Thị Thanh Huyền',cls:'10B4',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#d4fc79,#96e6a1)',fb:''},
+  {id:'p16',n:'Lê Bá Anh Tuấn',cls:'10B5',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#a7a6c0,#4d4d6e)',fb:''}, 
+  {id:'p17',n:'Nguyễn Đình Hoằng',cls:'10B1',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#ff6e7f,#bfe9ff)',fb:''}, 
+  {id:'p18',n:'Lê Trương Tuấn Đạt',cls:'10B8',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#00c6fb,#005bea)',fb:''}, 
+  {id:'p19',n:'Nguyễn Thị Ngọc Ánh',cls:'12C5',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#f093fb,#f5576c)',fb:''}, 
+  {id:'p20',n:'Nguyễn Phương',cls:'12C8',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#a8e063,#56ab2f)',fb:''}, 
+  {id:'p21',n:'Nguyễn Văn Toàn',cls:'12C1',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#ffedbc,#ed4264)',fb:''} 
+];
+
+const K='vote_state_v2';
+const sId=mkId();
+let S=load();
+init();
+
+function mkId(){
+  let s=navigator.userAgent+navigator.platform+screen.width+screen.height+Intl.DateTimeFormat().resolvedOptions().timeZone;
+  let h=5381; for(let i=0;i<s.length;i++)h=((h<<5)+h)+s.charCodeAt(i); return 'd'+(h>>>0)
+}
+
+function load(){
+  try{let x=localStorage.getItem(K); return x?JSON.parse(x):{players:{},totVotes:0,totAmt:0}}
+  catch(e){return {players:{},totVotes:0,totAmt:0}}
+}
+
+function save(){localStorage.setItem(K,JSON.stringify(S)); updSum()}
+
+function updSum(){document.getElementById('sumInfo').textContent = `Tổng vote ${S.totVotes} · Tổng đặt cược ${formatAmt(S.totAmt)}`}
+
+function formatAmt(a){return a.toLocaleString('vi-VN')+' ₫'}
+
+function rUI(){
+  const g=document.getElementById('g'); g.innerHTML='';
+  pArr.forEach(p=>{
+    const st=S.players[p.id]||{votes:0,amt:0,list:[]};
+    const cnt=st.votes; const amt=st.amt;
+    const pct = S.totVotes?Math.round(cnt/S.totVotes*100):0;
+    const card=document.createElement('div'); card.className='card'; card.id='c_'+p.id;
+    card.innerHTML=`
+      <div class="head">
+        <div class="avatar" style="background:${p.imgColor}">${p.n.split(' ').slice(-1)[0].slice(-1).toUpperCase()}</div>
+        <div class="info">
+          <div class="name">${p.n}</div>
+          <div class="meta">${p.cls} · ${p.pos}</div>
+        </div>
+        <div class="actions">
+          <button class="iconBtn" data-id="${p.id}" onclick="openSocial(event)">FB</button>
+          <button class="iconBtn" data-id="${p.id}" onclick="openVote(event)">Vote</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="small">Vote: ${cnt}</div>
+        <div class="small">${formatAmt(amt)}</div>
+      </div>
+      <div class="barWrap" aria-hidden="true"><div class="bar" style="width:${pct}%"></div></div>
+    `;
+    g.appendChild(card);
+  });
+  updSum();
+}
+
+function rVUI(){
+  const gv=document.getElementById('gv'); gv.innerHTML='';
+  pArr.forEach(p=>{
+    const st=S.players[p.id]||{votes:0,amt:0,list:[]};
+    const card=document.createElement('button'); card.className='card'; card.onclick=()=>openVoters(p.id);
+    card.innerHTML=`
+      <div class="head">
+        <div class="avatar" style="background:${p.imgColor}">${p.n.split(' ').slice(-1)[0].slice(-1).toUpperCase()}</div>
+        <div class="info">
+          <div class="name">${p.n}</div>
+          <div class="meta">${p.cls} · ${p.pos}</div>
+        </div>
+        <div style="text-align:right">
+          <div class="small">Vote ${st.votes}</div>
+          <div class="small">${formatAmt(st.amt)}</div>
+        </div>
+      </div>
+    `;
+    gv.appendChild(card);
+  });
+}
+
+// window.openSocial=(ev)=>{
+//   const id=ev.currentTarget.dataset.id;
+//   const p=pArr.find(x=>x.id===id);
+//   window.open(p.fb,'_blank');
+// }
+
+function openSocial(e){
+  const id = e.currentTarget.dataset.id;
+  const p = pArr.find(x => x.id === id);
+
+  if(!p.fb || p.fb.trim() === ""){
+    openDialog("Thông tin chưa được cập nhật.");
+    return;
+  }
+
+  window.open(p.fb, "_blank");
+}
+
+function openDialog(msg){
+  const d = document.getElementById("infoDlg");
+  d.querySelector(".msg").textContent = msg;
+  d.style.display = "flex";
+}
+
+let cur=null;
+window.openVote=(ev)=>{
+  const id=ev.currentTarget.dataset.id; cur=id;
+  const p=pArr.find(x=>x.id===id);
+  const st=S.players[id]||{votes:0,amt:0,list:[]};
+  const has=st.list.find(x=>x.did===sId);
+  document.getElementById('dlgT').textContent = has? 'Xác nhận bỏ vote':'Xác nhận vote';
+  document.getElementById('dlgP').textContent = p.n;
+  document.getElementById('inpName').value = has? has.name : '';
+  document.getElementById('inpAmt').value = has? 0 : 100;
+  document.getElementById('dlg').style.display='flex';
+}
+
+document.getElementById('dlgCancel').onclick=()=>{document.getElementById('dlg').style.display='none'; cur=null}
+document.getElementById('dlgOk').onclick=()=>{
+  const name=document.getElementById('inpName').value.trim() || 'Ẩn danh';
+  const amt=Math.max(0,Math.floor(Number(document.getElementById('inpAmt').value)||0));
+  const id=cur; if(!id){document.getElementById('dlg').style.display='none';return}
+  const st=S.players[id]||{votes:0,amt:0,list:[]};
+  const exIndex=st.list.findIndex(x=>x.did===sId);
+  if(exIndex>-1){
+    const ex=st.list.splice(exIndex,1)[0];
+    st.votes=Math.max(0,st.votes-1); st.amt=Math.max(0,st.amt - (ex.amt||0));
+    S.totVotes=Math.max(0,S.totVotes-1); S.totAmt=Math.max(0,S.totAmt - (ex.amt||0));
+  } else {
+    const rec={did:sId,name:name,amt:amt||0,ts:Date.now()};
+    st.list.push(rec);
+    st.votes=(st.votes||0)+1; st.amt=(st.amt||0)+(rec.amt||0);
+    S.totVotes=(S.totVotes||0)+1; S.totAmt=(S.totAmt||0)+(rec.amt||0);
+  }
+  S.players[id]=st; save(); document.getElementById('dlg').style.display='none'; cur=null; rUI(); rVUI();
+}
+
+function openVoters(id){
+  const st=S.players[id]||{votes:0,amt:0,list:[]};
+  const listEl=document.getElementById('vList'); listEl.innerHTML='';
+  if(!st.list.length){listEl.innerHTML=`<div class="empty">Chưa có ai vote</div>`}
+  else{
+    st.list.slice().reverse().forEach(x=>{
+      const r=document.createElement('div'); r.className='voterRow';
+      r.innerHTML=`<div style="font-weight:700">${x.name}</div><div class="small">${formatAmt(x.amt)}</div>`;
+      listEl.appendChild(r);
+    })
+  }
+  document.getElementById('vDlgT').textContent = 'Người vote cho '+(pArr.find(p=>p.id===id)||{n:''}).n;
+  document.getElementById('vDlg').style.display='flex';
+}
+
+document.getElementById('vClose').onclick=()=>{document.getElementById('vDlg').style.display='none'}
+
+document.getElementById('btVoters').onclick=()=>{
+  document.getElementById('mainView').style.display='none';
+  document.getElementById('vView').style.display='block';
+  document.getElementById('btVoters').classList.add('primary');
+  document.getElementById('btList').classList.remove('primary');
+  rVUI();
+}
+document.getElementById('btList').onclick=()=>{
+  document.getElementById('mainView').style.display='block';
+  document.getElementById('vView').style.display='none';
+  document.getElementById('btList').classList.add('primary');
+  document.getElementById('btVoters').classList.remove('primary');
+  rUI();
+}
+
+function init(){ if(!localStorage.getItem(K)) {pArr.forEach(p=>S.players[p.id]={votes:0,amt:0,list:[]}); save()} rUI(); rVUI(); document.getElementById('btList').classList.add('primary') }
+</script>
+</body>
+</html>

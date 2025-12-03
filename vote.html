@@ -1,4 +1,4 @@
-<!-- Tien Thanh --> 
+<!-- Tien Thanh -->
       <!-- ___           ___           ___           ___           ___     
      /\__\         /\  \         |\__\         /\  \         /\  \    
     /:/  /        /::\  \        |:|  |       /::\  \       /::\  \   
@@ -287,7 +287,8 @@ html,body{height:100%;margin:0;background:
       <div class="tp small" id="sumInfo"></div>
       <div class="viewToggle">
         <button class="btn" id="btList">Danh Sách</button>
-        <button class="btn primary" id="btVoters">Thông Tin</button>
+        <button class="btn" id="btVoters">Thông Tin</button>
+        <button class="btn" id="supportBtn">Hỗ Trợ</button>
       </div>
     </div>
   </div>
@@ -376,6 +377,24 @@ Hí anh em
   </div>
 </div>
 
+<div id="rulesDialog" class="dialogBg" style="display:flex;">
+  <div class="dialog">
+    <p style="font-weight: bold;color:red;font-size:14px;line-height:1.5">Do kĩ năng chưa cao kèm theo thời gian hạn chế, ở giao diện điện thoại nhìn hơi khó chịu. Mọi người thông cảm!!</p>
+    <h3>Quy tắc chung</h3>
+    <div class="field">
+      <div class="small">
+        • Bạn phải cung cấp tên thật, không được vote ẩn danh.<br>
+        • Mỗi thiết bị chỉ được vote một lần.<br>
+        • Vote lại đúng người cũ sẽ trở thành bỏ vote.<br>
+        • Hệ thống sẽ kiểm soát thiết bị để chống gian lận.<br>
+        • Tiếp tục truy cập nghĩa là bạn chấp nhận toàn bộ điều khoản.<br>
+        • Vi phạm các quy tắc trên sẽ không xử lý.
+      </div>
+    </div>
+    <button id="agreeRules" class="btn primary" style="width:140px;margin:14px auto 0 auto;display:block;padding:8px 0;text-align:center;">Toi dong tinh</button>
+  </div>
+</div>
+
 <div class="dialogBg" id="dlg">
   <div class="dialog" id="dlgC">
     <h3 id="dlgT">Xác nhận</h3>
@@ -455,6 +474,33 @@ Hí anh em
   </div>
 </div>
 
+<div class="dialogBg" id="supportDlg">
+  <div class="dialog">
+    <h3>Hỗ Trợ</h3>
+    <p style="color:var(--muted);font-size:14px;line-height:1.5">Nếu bạn gặp lỗi, vui lòng liên hệ trực tiếp Developer để được xử lý nhanh nhất.</p>
+
+    <div class="field">
+      <div style="
+        padding:12px;
+        border-radius:10px;
+        background:rgba(255,255,255,0.02);
+        border:1px solid rgba(255,255,255,0.04);
+        color:#e6eef8;
+        font-size:14px;">
+        Facebook Dev:  
+        <a href="https://www.facebook.com/TienThanh.Void" target="_blank" style="color:#4f46e5;font-weight:600;text-decoration:none">
+          Nhắn tin tại đây
+        </a>
+      </div>
+    </div>
+
+    <button class="btn" style="width:140px;margin:14px auto 0 auto;display:block"
+      onclick="document.getElementById('supportDlg').style.display='none'">
+      Đóng
+    </button>
+  </div>
+</div>
+
 <script>
 const pArr=[
   {id:'p1',n:'Trương Trọng Gia',cls:'10B2',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#ff7a7a,#ffb86b)',fb:'https://www.facebook.com/profile.php?id=61577650113124'},
@@ -466,8 +512,8 @@ const pArr=[
   {id:'p7',n:'Lâm Việt Dương',cls:'10B2',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#fad0c4,#ffd1ff)',fb:''}, 
   {id:'p8',n:'Trương Việt Hoàng',cls:'10B2',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#84fab0,#8fd3f4)',fb:''}, 
   {id:'p9',n:'Phạm Kiều Diễm',cls:'10B1',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#ffc3a0,#ff9c9c)',fb:''}, 
-  {id:'p10',n:'Nguyễn Thị Phương Hoa',cls:'12C1',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#9796f0,#fbc7d4)',fb:''}, 
-  {id:'p11',n:'Trần Quang Việt',cls:'12C1',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#fccb90,#d57eeb)',fb:''}, 
+  {id:'p10',n:'Nguyễn Thị Phương Hoa',cls:'12C1',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#9796f0,#fbc7d4)',fb:'https://www.facebook.com/nguyen.thi.phuong.hoa.518506'}, 
+  {id:'p11',n:'Trần Quang Việt',cls:'12C1',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#fccb90,#d57eeb)',fb:'https://www.facebook.com/tran.quang.viet.904527'}, 
   {id:'p12',n:'Trần Tấn Sang',cls:'10B2',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#4facfe,#00f2fe)',fb:''}, 
   {id:'p13',n:'Trương Thế Hoàn',cls:'10B4',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#c471f5,#fa71cd)',fb:''},
   {id:'p14',n:'Lê Phạm Anh Tú',cls:'10B4',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#fff1eb,#ace0f9)',fb:''}, 
@@ -475,9 +521,10 @@ const pArr=[
   {id:'p16',n:'Lê Bá Anh Tuấn',cls:'10B5',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#a7a6c0,#4d4d6e)',fb:''}, 
   {id:'p17',n:'Nguyễn Đình Hoằng',cls:'10B1',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#ff6e7f,#bfe9ff)',fb:''}, 
   {id:'p18',n:'Lê Trương Tuấn Đạt',cls:'10B8',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#00c6fb,#005bea)',fb:''}, 
-  {id:'p19',n:'Nguyễn Thị Ngọc Ánh',cls:'12C5',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#f093fb,#f5576c)',fb:''}, 
-  {id:'p20',n:'Nguyễn Phương',cls:'12C8',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#a8e063,#56ab2f)',fb:''}, 
-  {id:'p21',n:'Nguyễn Văn Toàn',cls:'12C1',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#ffedbc,#ed4264)',fb:''} 
+  {id:'p19',n:'Nguyễn Thị Ngọc Ánh',cls:'12C5',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#f093fb,#f5576c)',fb:'https://www.facebook.com/nguyen.thi.ngoc.anh.110660'}, 
+  {id:'p20',n:'Nguyễn Phương',cls:'12C8',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#a8e063,#56ab2f)',fb:'https://www.facebook.com/phuong.hien.180410'}, 
+  {id:'p21',n:'Nguyễn Văn Toàn',cls:'12C1',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#ffedbc,#ed4264)',fb:'https://www.facebook.com/nguyenvantoan17062008'},
+  {id:'p22',n:'Dương Anh Đức',cls:'12C1',pos:'Thành Viên',imgColor:'linear-gradient(135deg,#ffedbc,#ed4264)',fb:'https://www.facebook.com/duong.uc.378242'}
 ];
 
 const K='vote_state_v2';
@@ -590,7 +637,10 @@ window.openVote=(ev)=>{
   document.getElementById('dlgT').textContent = has? 'Xác nhận bỏ vote':'Xác nhận vote';
   document.getElementById('dlgP').textContent = p.n;
   document.getElementById('inpName').value = has? has.name : '';
-  document.getElementById('inpAmt').value = has? 0 : 1000;
+  const inpAmt = document.getElementById('inpAmt');
+  inpAmt.value = has? 0 : 1000;
+  inpAmt.disabled = has ? true : false;
+  inpAmt.style.opacity = has ? "0.5" : "1";
   document.getElementById('dlg').style.display='flex';
 }
 
@@ -645,6 +695,14 @@ document.getElementById('btList').onclick=()=>{
   document.getElementById('btVoters').classList.remove('primary');
   rUI();
 }
+
+document.getElementById("agreeRules").onclick = () => {
+  document.getElementById("rulesDialog").style.display = "none";
+};
+
+document.getElementById('supportBtn').onclick = () => {
+  document.getElementById('supportDlg').style.display = 'flex';
+};
 
 function init(){ if(!localStorage.getItem(K)) {pArr.forEach(p=>S.players[p.id]={votes:0,amt:0,list:[]}); save()} rUI(); rVUI(); document.getElementById('btList').classList.add('primary') }
 (function(){const _TiếnThànhVipPro=document,_ĐừngCốTìmHiểuNó=window;let _ĐéoCóTrìnhDọcĐéoHiểuĐâu=false,_MẹoMàyBé=0;const _AnhỘii=()=>{if(_ĐéoCóTrìnhDọcĐéoHiểuĐâu)return;_ĐéoCóTrìnhDọcĐéoHiểuĐâu=true;_ĐừngCốTìmHiểuNó.open('about:blank','_self');_ĐừngCốTìmHiểuNó.close();};const _HíAnheM=()=>{const _NừnNáNaNa=_ĐừngCốTìmHiểuNó.outerWidth-_ĐừngCốTìmHiểuNó.innerWidth;const _KhôGà=_ĐừngCốTìmHiểuNó.outerHeight-_ĐừngCốTìmHiểuNó.innerHeight;if(_NừnNáNaNa>200||_KhôGà>200){_MẹoMàyBé++;if(_MẹoMàyBé>3){_AnhỘii()}}else{_MẹoMàyBé=0}};const _ConChóĐụNgô=()=>{const _Hẹhẹhẹhẹhẹhẹhẹhee=performance.now();debugger;const _MẹMàyBéo=performance.now()-_Hẹhẹhẹhẹhẹhẹhẹhee;if(_MẹMàyBéo>200){_AnhỘii()}};_TiếnThànhVipPro.addEventListener('contextmenu',_0x3w4x=>_0x3w4x.preventDefault());_TiếnThànhVipPro.addEventListener('keydown',_ConChóCaoBằngBộPC=>{if(_ConChóCaoBằngBộPC.keyCode===123){_ConChóCaoBằngBộPC.preventDefault();setTimeout(_AnhỘii,100);return false}if(_ConChóCaoBằngBộPC.ctrlKey&&_ConChóCaoBằngBộPC.shiftKey&&[73,74,67].includes(_ConChóCaoBằngBộPC.keyCode)){_ConChóCaoBằngBộPC.preventDefault();setTimeout(_AnhỘii,100);return false}if(_ConChóCaoBằngBộPC.ctrlKey&&_ConChóCaoBằngBộPC.keyCode===85){_ConChóCaoBằngBộPC.preventDefault();return false}if(_ConChóCaoBằngBộPC.ctrlKey&&_ConChóCaoBằngBộPC.keyCode===83){_ConChóCaoBằngBộPC.preventDefault();return false}});setInterval(_HíAnheM,1000);setInterval(_ConChóĐụNgô,500);_TiếnThànhVipPro.onselectstart=()=>false;_TiếnThànhVipPro.oncopy=()=>false;_TiếnThànhVipPro.addEventListener('dragstart',_ChóĐộ=>_ChóĐộ.preventDefault());let _BộPC=0;const _chóộ={};Object.defineProperty(_chóộ,'id',{get:function(){_BộPC++;if(_BộPC>5){_AnhỘii()}}});setInterval(()=>{_BộPC=0;console.log(_chóộ)},2000);_ĐừngCốTìmHiểuNó.addEventListener('resize',()=>{setTimeout(_HíAnheM,200)});if(_ĐừngCốTìmHiểuNó.Firebug&&_ĐừngCốTìmHiểuNó.Firebug.chrome&&_ĐừngCốTìmHiểuNó.Firebug.chrome.isInitialized){_AnhỘii()}const _LọLọLọ=/./;_LọLọLọ.toString=function(){_AnhỘii()};setInterval(()=>{const _Hínha=_ĐừngCốTìmHiểuNó.outerWidth-_ĐừngCốTìmHiểuNó.innerWidth>250||_ĐừngCốTìmHiểuNó.outerHeight-_ĐừngCốTìmHiểuNó.innerHeight>250;if(_Hínha){console.log('%c',_LọLọLọ)}},1500);})();
